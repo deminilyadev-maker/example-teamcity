@@ -79,6 +79,61 @@ public String sayHunter() {
 }
 ```
 
-## 11. Добавление теста
+11. Добавление теста
 
-В `
+В WelcomerTest.java добавлен тест, проверяющий наличие слова hunter в ответе нового метода.
+
+@Test
+public void welcomerSaysHunter() {
+    assertThat(welcomer.sayHunter(), containsString("hunter"));
+}
+
+12. Push изменений
+
+Изменения метода и теста отправлены в GitHub в ветку feature/add_reply.
+
+13. Проверка автоматической сборки
+
+После отправки изменений TeamCity автоматически запустил сборку. Сборка завершилась успешно, все 5 тестов прошли.
+
+14. Merge в master
+
+Изменения из feature/add_reply объединены с веткой master через Pull Request и Merge в GitHub.
+
+15. Проверка сборки master
+
+После Merge запущена сборка master. Сборка прошла успешно, ошибок публикации артефактов не возникло.
+
+16. Настройка публикации JAR
+
+В TeamCity настроено правило публикации артефактов:
+
+target/*.jar
+
+Артефакты публикуются даже при неудачной сборке.
+
+17. Повторная сборка master
+
+Повторно запущена сборка master. Сборка завершилась успешно, JAR создан и опубликован в Nexus, артефакты сборки доступны в TeamCity.
+
+18. Проверка конфигурации в GitHub
+
+Проверено, что в GitHub присутствует каталог .teamcity с файлами:
+
+settings.kts
+
+pom.xml
+
+pluginData/_Self/mavenSettings
+
+В settings.kts сохранены шаги Maven, условие для master и правило публикации JAR.
+
+В TeamCity Versioned Settings включена синхронизация с GitHub.
+
+Итог
+
+Настроена автоматическая сборка проекта в TeamCity с интеграцией Nexus.
+
+Добавлены метод sayHunter() и тест на наличие слова hunter. Изменения объединены в master.
+
+JAR публикуется в Nexus и как артефакт TeamCity. Конфигурация Build Configuration хранится в GitHub через Kotlin DSL.
