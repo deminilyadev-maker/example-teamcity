@@ -133,10 +133,3 @@ target/*.jar
 
 В TeamCity Versioned Settings включена синхронизация с GitHub.
 
-## Итог
-
-Настроена автоматическая сборка проекта в TeamCity с интеграцией Nexus.
-
-Добавлены метод `sayHunter()` и тест на наличие слова `hunter`. Изменения объединены в `master`.
-
-JAR публикуется в Nexus и как артефакт TeamCity. Конфигурация Build Configuration хранится в GitHub через Kotlin DSL.
